@@ -1,0 +1,3 @@
+USB CarPlay:
+Sequence - how we are establish CarPlay Session Over USB.
+on USB Carplay always to be on a host side(Head unit should be a device and CarPlay should act as host).

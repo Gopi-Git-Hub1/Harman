@@ -1,0 +1,98 @@
+Service-
+IF1 Service
+Thrift file having methods & events
+
+Methods:
+Outside(ServiceClient) -> Service: Service will process the request
+Service to device->technology
+
+Events:
+device->technology to Service
+Other place to Service
+	
+Service -> OutSide(Subscribed ServiceClients): Notifications to others
+
+
+device->technology
+- CControl:
+	- Centralized place to process all the data coming from different places - Service / Hardkey / TouchPad / Touch Screen / CP Platform	
+	- Sending data to this file either by Mocca Events / direct calls
+
+- DeviceControl:
+	- CContol->DeviceControl->Platform->Phone
+
+- CConfigModifier: It uses to handle technology specifies configuration file available in source/imp/data/configuration/CarPlay folder
+
+
+carplay_service folder (CarPlay_Service/src/core/src): Platform related specific communicaition both Events & Methods
+
+CPBLServiceObserver.cpp - Events / request from iPhone [iPhone to HU]
+CPBLCtrl.cpp - send to phone through serviceobserver object. [HU to iPhone]
+
+CPBLControllerStates - state machince
+
+CControl->device hanndler ->statemachine->CPBLCtrl->CPPlatform->iPhone
+ServiceObserver->queue->Processing through Statemachine-> xxx -> CControl
+
+EnterInteractiveMode-
+1. CControlService
+2. CarPlay/CControl
+3. DeviceHandler
+4. CPBLCtrl
+5. CPPlatform 
+6. iPhone
+
+Service->CControl
+Service->(IControlServiceProvider) CDeviceSwitch->CControl
+
+IControlServiceProvider
+Impelemented by CDeviceSwitch
+Declared IControlServiceProvider in Service and assigning this inferface object to DeviceSwitch object
+
+
+ServiceClients
+-------------------------------------------------------------------
+Events:
+ServiceClient->RMUIServer
+RMUIService->CControl and where ever it is required
+
+Mocca Events
+----------------------------------------------------
+Event
+EventData 
+EventConsumer
+
+Subscribe
+rmui::bluetooth::CConnectedProfilesChangedEvent::addListener(*this);
+
+Unsubscribe
+rmui::bluetooth::CConnectedProfilesChangedEvent::removeListener(*this);
+
+Consumer
+processEvent(const rmui::bluetooth::CConnectedProfilesChangedEvent &event)
+
+Create EventData class
+Bind EventData, Event, Consumer
+
+Implement EventConsumer where ever this event has to be received
+public CMultiThreadEventSender,
+
+Event Generation:
+CClientSystemActivationReadyEvent& event = *CClientSystemActivationReadyEvent::createEvent(CClientSystemActivationReadyEventData(mConnected));
+event.send();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

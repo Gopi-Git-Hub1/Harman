@@ -1,0 +1,71 @@
+Different types of inputs to control the Carplay.
+Touch , Knobs and Controls or Tuchpad, voice
+
+Touch: Directly interaction with user interface, Car sends x and y coordinates each single touch and calculate and 
+       give the High-fidelity or Low-fidelity touch screen, if we have touch two fingers will take latest finger touch to the phone, 
+       as of now it suports multi touch.
+
+Knobs and Controls : Required features are rotatig knob or touchpad, back, select.
+
+Multiple User Inuts: CarPlay automatically adusts its user interface to match user inputs,
+ex: Touchscreen (its allways consider the latest movement/coordinates): Touchscreen only , 
+Touchscreen and rotating knob , touchscreen , rotating knob and touchpad.
+
+voice: Activate siri button to communicate phone.
+
+How the carply works:
+
+It will communicate 4 ways to apple
+
+What ever we are seeig on the carply screen is directly streaming video from the apple phone 
+which is listen Head unit streaming mechaninsum via BT / WIFI or USB protocals.
+
+
+Phone will communicate first head unit through IP there is module having NCM (Network Control Module )
+NCM running inside the head uinit, we consider the phone is one of the IP device.
+
+
+Communication plug-in  :  It is source code which is provided by Apple, there is a in-built protocal directly communicate with apple phones, 
+                          so this communication plug-in communicate with all the head units.
+
+
+In communication plug-in we are writing on appilication to control audio (send/recive) and video(recive) from the apple phone to the carplay screen. 
+
+
+There is an other way to provided a data to the apple phone is iAP2.
+iAp2 (Interface Accessory Protocol)is a apple protocal , this will be used to directly communicate with phone to recive/send metadata and sensors data.
+
+metadata: It is like audio and video tracks info, duration ect...under metadata , 
+this will directly communicate with head unit(Phone is one of the head unit)
+
+
+There are two bacic mechanisums our Carplay communicates.
+Communication plug-in and iAp2
+
+To devolop a Carplay appilication required keys. 
+High resolution display , Speakers and Microphones, User input, Sensors, Connection to iPhone.
+
+High Resolution Disply:
+Apple currently suports 800x480 , 960x540 , 1280x720 and 1920x720 , as of now we have restrict one of the screen resolution 
+means we have to maitain above pixel density.
+Based on pixel density icons are arraged auomatically which is provided by apple itself.
+
+
+Speakers and Microphones:
+mainly speakers and micro phones are two ways to send/recive audio.
+main audio and Alternate audio.
+
+main audio: 
+It is like stereo and mono , stereo means phone to head unit output from phone to head uinit, 
+mono means head unit to phone input to the phone from the head unit.
+
+Alternate audio:
+It is like type of notification sound, its suports mono and stereo.
+
+for decoding or encoding audio using below 
+Wired CarPlay - uses LPCM decoder.
+Wireless CarPlay - uses AAC-LC for media, OPUS or AAC-ELD for all audio.
+
+
+
+

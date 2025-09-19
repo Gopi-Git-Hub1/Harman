@@ -1,0 +1,41 @@
+Sequence Diagram:
+-----------------
+
+RemoteUI::RemoteUIControlServiceProcessor
+
+form this perticular service all functionalitys where HMI is trying to get service from remore UI or inform what exactly with the user action , 
+every thing is inform through this perticular service.
+
+some basic use cases and how they are exactly be implimented from this perticular service.
+
+There different parties HMI(Human Machine Interface - Touch screen ) , RMUI(Remote UI) , MD(Mobile Device - Phone)
+
+**** Thease are simple basic sequences or use cases of where user request to enter the interactive mode or comming out of interactive mode. ****
+
+Intractive Mode:
+
+When we click on MHI icon in CarPlay which is beeing top corrner left side. 
+when we are start Projection screen StartProjection() - HMI will send enterinteractiveMode(TargetApplication=UNKNOWN(any of the screen))
+
+HMI will send enterinteractiveMode(TargetApplication=UNKNOWN(any of the screen)) and RMUI will recive and send ShowProjection() - call requestUI() 
+to MD-Mobile device (Phone)
+from the Mobile Device a screen set-up  will start a projection screen ProjectionModeScreen() to RemoteUI 
+from the RemoteUI send the screen projection request to HMI using intractiveModeStatusChange(true) 
+
+Go out of intractive mode:
+
+if we want to Go out of intractive mode by pressing home button or else HMI will send leaveInteractiveMode() 
+and its a generic call showNativeScreen() main Screen: (Take/User-init/user-init/Anytime) Then phone will give screen cleared on request and 
+respond nativeModeScreen() , 
+It will cofirmation from the phone to stop the streaming of the video screen.
+Then send interactiveModeStatusChanged(false,returnSceenInfo)
+
+**** Thease are simple basic sequences or use cases of where user request to enter the interactive mode or comming out of interactive mode. ****
+
+**** In the same way the phone can also send a request to show it a screen or to close it a screen.  ****
+
+phone will send request to projectionModeScreen() and  to show  the screen then call interactiveModeStatusChanged(True) 
+phone will send request to nativeModeScreen() and  screen cleared on request then call interactiveModeStatusChanged(false,DEFINED) and 
+interactiveModeStatusChanged(false,UNKNOWN) - [ Mobile Device leaves temporay Interactive Mode ] 
+
+**** In the same way the phone can also send a request to show it a screen or to close it a screen.  ****

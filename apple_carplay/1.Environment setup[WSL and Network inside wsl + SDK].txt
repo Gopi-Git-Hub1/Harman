@@ -1,0 +1,77 @@
+Step 1-install wsl and ubuntu distro
+	-in powershell window(admin)
+		"wsl --install"
+		This command will enable the required optional components, download the latest Linux kernel, set WSL 2 as your default, and install a Linux distribution for you (Ubuntu by default).
+	
+	-use command
+		"wsl -l -v"
+		this will list the installed distros. and should contain ubuntu atleast.
+
+
+
+Step 2- running ubuntu inside WSl2
+		-open cmd or windows terminal.
+		-use command 
+			"wsl"
+			this will boot the default distro which is ubuntu in our case.
+		in further tutorial we will mention this window as ubuntu terminal.
+
+
+step 3- Obtain root privilages in ubuntu terminal.
+		"sudo s"
+		"cd /etc"
+
+powershell displays all dns servers
+		"Get-DnsClientServerAddress -AddressFamily IPv4 | Select-Object -ExpandProperty ServerAddresses"
+		
+		copy these Ip addresses somethere in a text editor add keyword "nameserver" before each ip address. list should look like.
+		
+		example-
+		nameserver 187.8.90.29
+		nameserver 123.1.14.121
+		and so on
+
+
+step 4-	wsl.conf
+		"	[network]
+			generateResolvConf = false
+			user@host:/etc$	"
+		wsl resets resolv.conf file at each boot up the above lines disable that feature of wsl.	
+		
+step 5- resolv.conf
+		"chattr -i resolv.conf" to make it editable
+		now paste the nameserver list and save the file
+
+
+
+
+
+
+services.msc
+Lxssmanager
+
+ping google.com
+ping gerrit1.harman.com
+
+above commands should return some values stating packet recieved. otherwise wont be able to connect to internet.
+
+-------------------------------------WSL setup is now complete  we need to setup SDK Now----------------------------------------------
+
+
+1.For installing SDK download the latest zip on windows OS.
+2.In Ubuntu terminal "cd /home/[username]"    replace username with wichever folder is present inside home directory.
+3.use command "explorer.exe ."  it will open windows explorer window with your current ubuntu path.
+4.paste extracted sdk files here. 
+5.on ubuntu terminal cd into the sdk folder that you have pasted and run "chmod 777 ***"
+6.run "./elina-glibc-x86_64-meta-toolchain-cortexa9hf-neon-toolchain-2.3.4-orinoco.sh" this will execute the shell file once completed.
+7.run "./update_sdk.sh elina-orinoco-glibc-x86_64-arm-harfwsdk-toyotacy20-t077-mx6q.tar.bz2"
+
+
+
+
+
+
+
+before compiling new build remember to source environment each time you use a new terminal.
+environment sourcing 
+. /opt/elina/2.3.4/environment-setup-cortexa9hf-neon-elina-linux-gnueabi

@@ -1,0 +1,20 @@
+>>>>Connection issues 
+
+
+
+0. remoteuicontrolserv
+1. Requestmanualconnection
+2. connectionstatusbtaccessorychanged
+3. wirelesscarplayupdate
+4. appledevicelistchanged
+5. Remoteuideviceconnected
+6. initializeremoteuidevice
+7. HU has shared access wifi config to iPhone [ Yes / No]----->accesswificonfig
+8. iPhone joined to access point or not [Yes / No]------------>Clientconnectionupdate  OR getconnectedclientlist
+9. iPhone started advertising bonjour service[ Yes / No]------->adding/updatingcontroller(controlleraddedupdate)
+10. CarPlay control request is sucessful or not [Yes / No]--------->connecttodevice(Connection successful)(carplaycontrolrequest)
+11. iPhone requested Pair Control Verify request [Yes/No]--------->CarPlay Session create FAILED
+12. MFI authentication completed [Yes/No]
+13. Finally session created or not [Yes/No]
+14. initilizationstatuschanged - success
+

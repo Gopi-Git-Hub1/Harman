@@ -1,0 +1,141 @@
+ResourceManagement:
+------------------
+
+Its our appilication - handling requests for resourcees.
+when gets requests from CarPlay And Apple Phone the resource manager will manage/decide whom will give the permission.
+
+Commands for managing resources:
+
+changeModes - request or release resources -> request or commands tells to the Phone.
+
+modesChanged - Notification that state changes -> reply back from the phone.
+
+play FM radio: request to take the audio resource indefinitely.
+
+use native voice recognition: resources are return to the head uint, return resources when finished.
+
+show backup camera: state that the screen can never be assigned to anyone else.[defining the constraints - define the rules while you are the owner. 
+ 1) any time - allow amy appilication to get access.
+ 2) user initiated - allow only user-initiated applications to get access. 
+ 3) never - do not let any application get access.]
+ 
+ask siri to play music: to make a long press od push to talk siri will activate,  siri has been assigned resources and head unit is nnotified.
+
+How the application manageing ? - application state management -  it discribe app state.
+ 1) TrunByTurn - Route guidence active 
+ 2) PhoneCall [BT call, native call, HFP call or secondary call - non carplay call]- Phone call in progress 
+ 3) Speech - voive intraction in progress.
+
+During intialization session.
+[ Telling to the phone ]
+
+change mode:
+Setting INIT resource mode :
+Resource = mainscreen,
+Trans:take,
+Priority:userInitiated,
+Take:userinitiated,
+Borrow:anytime
+BorrowId:
+
+modes Change:
+screen accessory (permnant screen accssory),
+main audio accssory (permanent main audio accessory),
+phone n/a,
+speach n/a(none),
+turns n/a,
+
+
+App state:
+Setting INIT App state:
+Phone:NO,
+Navi:YES,
+Speach :NO one is speacking 
+
+
+initial Modes:
+ 1) any high priority screen or audio is ongoing(screen: RVC , your showing call overlay,  audio: you have native cal ect...).
+ 
+ 2) any temprary medium priority(native VR , HU is in mute state, HU is announcing traffic announcement ect..) screen or audio is ongoing.
+ 
+ 3) no other screens are there. do we need to show the carplay screen immeditly after the session.
+ 
+ This is for Head Unit telling to iPhone.
+ Main Audio:
+(take / nice-to-have /
+anytime / anytime)
+Main Screen:
+(take / nice-to-have /
+anytime / anytime)
+appStates(NA)
+
+Main Audio: Accessory or Controller    - optional for the phone 
+Main Screen: Controller | Controller   - compalsory for the phone to own the screen.
+appStates(NA)
+
+ 4) no other screens are there. don't show the carplay screen imeditly. show it when user requests for it.
+ 
+ Main Audio:
+(take / nice-to-have /
+anytime / anytime)
+Main Screen:
+(take / user-init /
+user-init / anytime)
+appStates(NA)
+
+*** when user wants to see the carplay screen from the from the requesting to HU by passing carplay icon --> requestUI();
+
+For Screen:
+
+ - any apple known device connected native UI screen and disconnected  , an other native screen UI played and connected again divice the last native UI screen is carplay screen - when it was  disconnected native UI screen.
+
+For Audio:
+
+ - any apple known device connected native UI audio and disconnected play someting on native UI audio and connected again last native UI audio will play on the carplay screen.
+  
+  
+4 Use Cases:
+  		native        carplay
+  		
+ audio         userInit       niceToHave
+ 
+ screen        userInit       niceToHave
+ 
+ 
+ 
+>>>>>>>>>>>  To work with Apple CarPlay™, accessories must support the CarPlay feature. <<<<<<<<<<<<<<<<<
+
+
+Note: The CarPlay session is established after the user selects CarPlay.
+
+This describes the detailed information on the changeModes/modesChanged commands that are exchanged between your CarPlay accessory and the Apple device.
+This describes the changeModes request sent from your accessory to the Apple device.
+
+1) Connection:
+First Time Connection:  [Native UI(Apple Phone Screen) and CarPlay UI(CarPlay Screen) ]
+when the user connects an Apple device to your CarPlay accessory for the first time.
+ > Connect to an Apple device for the first time and immediately show CarPlay on the car’s display.
+ > Connect to an Apple device for the first time and show a confirmation screen. After the confirmation is accepted connect CarPlay and immediately show CarPlay on the car’s display.
+ > This use cases describe resource management when the user connects an Apple device to your CarPlay accessory for the first time.
+ 
+2) Reconnection:
+ > This use cases describe resource management when the user connects a known Apple device to your CarPlay accessory.
+ 
+3) User Interaction with your Accessory:
+ > This use cases describe resource management during user interactions with your accessory.
+ 
+4) User Interaction with CarPlay:
+ > This use cases describe resource management during user interactions with CarPlay.
+- standby mode (display and audio off)
+- a user-perceived off state (part of a power down sequence).
+
+5) Audio Selection:
+ > This use cases describe resource management during audio interactions with CarPlay.
+ 
+6) Second Phone connection Using Bluetooth:
+ > This use cases describe resource management when a second phone is connected to your accessory using Bluetooth or the accessory executes a call using any additional phone service, 
+   e.g. concierge calls, etc.
+
+
+
+>>>>>>>>>>>  To work with Apple CarPlay™, accessories must support the CarPlay feature. <<<<<<<<<<<<<<<<<

@@ -1,0 +1,32 @@
+WireLess CarPlay:
+-----------------
+
+First device will be enumerated, if connect any apple device to head unit - by providing vendor Id and product Id.
+We can decide device will be enumerated or not using vendor Id and product Id.
+Then we try to ditect whether the perticular divice suports carPlay or not - by getting capabilities.
+Then we have to ditect whether there is already wireLess session coding or not on that perticuar device.
+Because when the session is going over the wireless the same device can be connected over the USB and we should not do anything for that perticular device. 
+for that ditect whether the sesssion is going there or not.
+Then we have to request for the Role Switch - it will make from the host device mode for the head unit.
+Now Phone is the host and head unit is for a device mode.
+Then we can enumerate apple device in USB host mode.
+And Then try to establish iAP2 session over USB.
+Mainly we can usess Authontication of the device through connected apple chip.
+Once Enumeration Done and it can authonticated then we try establish a CarPlay session.
+
+CarPlay Session that will be a first request from the Head unit to the phone, than HTTP/RTSP Protocal.
+During a CarPlay Session there are mainly 4 channels will be established.
+1) Video 2) Video with syncronization Signal 3) Audio 4) Control
+
+And initialy the device will send a info request.
+
+
+Head unit to Phone Bluetooth Pairing done and iAP2 Then wireless CarPlay Update from the phone and Credentials are exchanged and phone will be connected to via wifi or access point
+
+
+There is a bonzoer service running(its a part of head unit only ) once the IP connection is establish head unit or phone pushlish theire capability to the bonzoer service 
+
+
+For first time connection establishment, the accessory must be discoverable over Bluetooth and allow for new devices
+to pair. If the accessory supports active Bluetooth pairing, it must use the Device CarPlay Bluetooth EIR to check if the
+device supports CarPlay, and if supported, offer the user to pair for CarPlay.
